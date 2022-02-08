@@ -10,17 +10,15 @@ contract TATU is IERC20 {
     string public _name;
     string public _symbol;
 
-    uint256 public constant decimals = 18;
     mapping(address => uint256) internal _balances;
     mapping(address => mapping(address => uint256)) _allowances;
     uint256 private _totalSupply;
-    uint256 public constant MAX_TOTAL_SUPPLY = 10000 ** decimals;
+    uint256 public constant MAX_TOTAL_SUPPLY = 10000 ether;
     address private _minter;
 
     constructor(string memory initName, string memory initSymbol, uint256 totalAmount) {
-        _mint(msg.sender, _totalSupply ** decimals);
-        _totalSupply = totalAmount;
         _minter = msg.sender;
+        _mint(msg.sender, totalAmount);
         _name = initName;
         _symbol = initSymbol;
     }
