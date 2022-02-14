@@ -28,13 +28,18 @@ const config: HardhatUserConfig = {
       accounts: accounts('localhost'),
     },
     testnet: {
-      url: 'https://data-seed-prebsc-1-s1.binance.org:8545',
+      url: 'https://rpc-mumbai.maticvigil.com/',
       accounts: accounts('testnet'),
       live: true,
     },
     matic: {
       url: 'https://rpc-mainnet.maticvigil.com',
       accounts: accounts('matic'),
+      live: true,
+    },
+    kovan: {
+      url: 'https://kovan.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161',
+      accounts: accounts('kovan'),
       live: true,
     }
   },

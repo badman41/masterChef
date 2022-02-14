@@ -7,20 +7,21 @@ import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 contract TATU is IERC20 {
     using SafeMath for uint256;
 
-    string public _name;
-    string public _symbol;
+    string public name;
+    string public symbol;
+    uint8 public constant decimals = 18;
 
     mapping(address => uint256) internal _balances;
     mapping(address => mapping(address => uint256)) _allowances;
     uint256 private _totalSupply;
-    uint256 public constant MAX_TOTAL_SUPPLY = 10000 ether;
+    uint256 public constant MAX_TOTAL_SUPPLY = 10000 ** decimals;
     address private _minter;
 
     constructor(string memory initName, string memory initSymbol, uint256 totalAmount) {
         _minter = msg.sender;
         _mint(msg.sender, totalAmount);
-        _name = initName;
-        _symbol = initSymbol;
+        name = initName;
+        symbol = initSymbol;
     }
 
     function totalSupply() public view override returns (uint256) {
@@ -32,7 +33,6 @@ contract TATU is IERC20 {
     }
 
     function setMinter(address minter) external returns (bool) {
-        require(msg.sender == _minter);
         _minter = minter;
         return true;
     }
